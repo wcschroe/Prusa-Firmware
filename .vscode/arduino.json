@@ -1,0 +1,5 @@
+{
+    "port": "COM25",
+    "board": "PrusaResearchEinsyRAMBo:avr:rambo",
+    "sketch": "Firmware\\Firmware.ino"
+}
