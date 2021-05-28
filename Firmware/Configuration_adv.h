@@ -452,7 +452,7 @@ const unsigned int dropsegments=5; //everything with less than this number of st
 #endif
 #if TEMP_SENSOR_BED == 0
   #undef BED_MINTEMP
-  #undef BED_MAXTEMP
+  //#undef BED_MAXTEMP
 #endif
 #if TEMP_SENSOR_AMBIENT == 0
   #undef AMBIENT_MINTEMP

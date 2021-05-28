@@ -2196,6 +2196,7 @@ void check_min_temp_heater0()
 
 void check_min_temp_bed()
 {
+#ifdef BED_MINTEMP
 #if HEATER_BED_RAW_LO_TEMP > HEATER_BED_RAW_HI_TEMP
 	if (current_temperature_bed_raw >= bed_minttemp_raw) {
 #else
@@ -2208,6 +2209,7 @@ void check_min_temp_bed()
 		// which is a safer variant than just continuing printing
 		alert_automaton_bed.step(current_temperature_bed, BED_MINTEMP + TEMP_HYSTERESIS);
 	}
+#endif //ifdef BEDMINTEMP
 }
 
 #ifdef AMBIENT_MINTEMP
@@ -2254,6 +2256,7 @@ else {                                            // ~ nozzle heating is off
      bCheckingOnHeater=false;
      }
 // * bed checking
+#ifdef BED_MINTEMP
 if(target_temperature_bed>BED_MINTEMP)
      {                                            // ~ bed heating is on
      bCheckingOnBed=bCheckingOnBed||(current_temperature_bed>(BED_MINTEMP+TEMP_HYSTERESIS)); // for eventually delay cutting
@@ -2267,6 +2270,7 @@ else {                                            // ~ bed heating is off
      oTimer4minTempBed.start();
      bCheckingOnBed=false;
      }
+#endif //BED_MINTEMP
 // *** end of 'common' part
 #ifdef AMBIENT_THERMISTOR
      }
@@ -2276,7 +2280,7 @@ else {                                            // ambient temperature is stan
      }
 #endif //AMBIENT_THERMISTOR
 }
- 
+
 #if (defined(FANCHECK) && defined(TACH_0) && (TACH_0 > -1))
 void check_fans() {
 #ifdef FAN_SOFT_PWM
